@@ -1,5 +1,5 @@
-import { Phones } from '../phones/phones.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Products } from "src/products/products.entity"
+import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class User {
@@ -12,6 +12,7 @@ export class User {
     @Column()
     password: string;
 
-    @ManyToOne(() => Phones, phones => phones.users)
-    phones: Phones[];
+    @ManyToMany(() => Products)
+    @JoinTable()
+    products: Products[];
 }   

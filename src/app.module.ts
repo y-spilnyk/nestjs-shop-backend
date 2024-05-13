@@ -1,10 +1,10 @@
 import { Module } from "@nestjs/common";
-import { TasksModule } from "./phones/phones.module";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { User } from "./auth/user.entity";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { validationSchema } from "./config.schema";
-import { Phones } from "./phones/phones.entity"
+import { Phones } from "./products/products-phones/phones.entity"
+import { ProductsModule } from "./products/products.module"
 
 @Module({
     imports: [
@@ -12,7 +12,7 @@ import { Phones } from "./phones/phones.entity"
             envFilePath: `.env.stage.${process.env.STAGE}`,
             validationSchema: validationSchema
         }),
-        TasksModule,
+        ProductsModule,
         TypeOrmModule.forRootAsync({
             imports: [ConfigModule],
             inject: [ConfigService],
@@ -34,7 +34,7 @@ import { Phones } from "./phones/phones.entity"
                     entities: [User, Phones]
                 };
             }
-        }),
+        })
     ]
 })
 export class AppModule {}

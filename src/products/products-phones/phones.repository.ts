@@ -2,7 +2,7 @@ import { EntityManager, Repository, SelectQueryBuilder } from "typeorm"
 import { Phones } from "./phones.entity"
 import { Injectable, NotFoundException } from "@nestjs/common"
 import { PhonesFilterDto } from "./dto/get-Phones-filter.dto"
-import { User } from "../auth/user.entity"
+import { User } from "../../auth/user.entity"
 
 @Injectable()
 export class PhonesRepository extends Repository<Phones> {

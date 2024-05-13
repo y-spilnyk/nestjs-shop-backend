@@ -9,4 +9,4 @@ import { PhonesController } from "./phones.controller"
     controllers: [PhonesController],
     providers: [PhonesService, PhonesRepository]
 })
-export class TasksModule {}
+export class PhoneModule {}

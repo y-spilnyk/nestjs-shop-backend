@@ -1,6 +1,6 @@
-import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { BatteryCapacity } from "./phones-battery.enum";
-import { User } from "src/auth/user.entity"
+import { Products } from "../products.entity"
 
 @Entity()
 export class Phones {
@@ -16,7 +16,6 @@ export class Phones {
     @Column()
     battery: BatteryCapacity;
 
-    @ManyToMany(() => User, user => user.phones)
-    @JoinTable()
-    users: User[];
+    @ManyToOne(() => Products, product => product.phones)
+    product: Products[];
 }
