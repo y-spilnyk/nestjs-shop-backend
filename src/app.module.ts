@@ -5,6 +5,7 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
 import { validationSchema } from "./config.schema";
 import { Phones } from "./products/products-phones/phones.entity"
 import { ProductsModule } from "./products/products.module"
+import { Products } from './products/products.entity';
 
 @Module({
     imports: [
@@ -31,7 +32,7 @@ import { ProductsModule } from "./products/products.module"
                     database: process.env.DATABASE_NAME,
                     autoLoadEntities: true,
                     synchronize: true,
-                    entities: [User, Phones]
+                    entities: [User, Phones, Products]
                 };
             }
         })

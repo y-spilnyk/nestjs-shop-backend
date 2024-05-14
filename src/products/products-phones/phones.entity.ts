@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { BatteryCapacity } from "./phones-battery.enum";
 import { Products } from "../products.entity"
 
@@ -16,6 +16,6 @@ export class Phones {
     @Column()
     battery: BatteryCapacity;
 
-    @ManyToOne(() => Products, product => product.phones)
+    @OneToMany(() => Products, product => product.phones)
     product: Products[];
 }

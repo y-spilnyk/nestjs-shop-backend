@@ -8,7 +8,7 @@ export class ProductsController {
   constructor(private productsService: ProductsService) { }
 
   @Get()
-  getAllProducts(filterDto: ProductsFilterDto): any {
+  getAllProducts(filterDto: ProductsFilterDto): any { // Promise<Products[]>
     this.productsService.getAllProducts(filterDto)
   }
 

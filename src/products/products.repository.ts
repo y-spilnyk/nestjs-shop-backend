@@ -18,9 +18,6 @@ export class ProductsRepository extends Repository<Products> {
         
         Object.keys(filterDto).forEach((key) => {
             const value = filterDto[key];
-            console.log('=== key ===', key);
-            console.log('=== value ===', value)
-    
             if (key) userData.andWhere(`phones.${key} = :value`, { value });
         })
         return await userData.getMany()

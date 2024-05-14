@@ -1,5 +1,5 @@
 import { Products } from "src/products/products.entity"
-import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class User {
@@ -12,7 +12,6 @@ export class User {
     @Column()
     password: string;
 
-    @ManyToMany(() => Products)
-    @JoinTable()
+    @OneToOne(() => Products, products => products.user)
     products: Products[];
 }   

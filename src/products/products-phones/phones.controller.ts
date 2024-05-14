@@ -3,11 +3,11 @@ import { PhonesService } from "./phones.service"
 import { PhonesFilterDto } from "./dto/get-phones-filter.dto"
 import { Phones } from "./phones.entity"
 
-@Controller("products")
+@Controller('/products/phones')
 export class PhonesController {
     constructor(private tasksService: PhonesService) {}
 
-    @Get('/phones')
+    @Get()
     getPhones(@Query() filterDto: PhonesFilterDto): Promise<Phones[]> {
         return this.tasksService.getPhones(filterDto)
     }
