@@ -6,6 +6,7 @@ import { validationSchema } from "./config.schema";
 import { Phones } from "./products/products-phones/phones.entity"
 import { ProductsModule } from "./products/products.module"
 import { Products } from './products/products.entity';
+import { Fridges } from "./products/products-fridges/fridges.entity"
 
 @Module({
     imports: [
@@ -32,7 +33,7 @@ import { Products } from './products/products.entity';
                     database: process.env.DATABASE_NAME,
                     autoLoadEntities: true,
                     synchronize: true,
-                    entities: [User, Phones, Products]
+                    entities: [User, Products, Phones, Fridges]
                 };
             }
         })
