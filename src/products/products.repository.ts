@@ -10,17 +10,18 @@ export class ProductsRepository extends Repository<Products> {
         super(Products, eManager)
     }
 
-    async getQuery(): Promise<SelectQueryBuilder<Products>> {
-        return this.createQueryBuilder(ENDPOINTS.PRODUCTS)
-    }
+    // async getQuery(): Promise<SelectQueryBuilder<Products>> {
+    //     return this.createQueryBuilder(ENDPOINTS.PRODUCTS)
+    // }
 
     async getAllProducts(filterDto: ProductsFilterDto): Promise<Products[]> {
-        const userData = await this.getQuery()
+        // const userData = await this.getQuery()
         
-        Object.keys(filterDto).forEach((key) => {
-            const value = filterDto[key];
-            if (key) userData.andWhere(`${ENDPOINTS.PRODUCTS}.${key} = :value`, { value });
-        })
-        return await userData.getMany()
+        // Object.keys(filterDto).forEach((key) => {
+        //     if (key) userData.andWhere(`${ENDPOINTS.PRODUCTS}.${key} = :value`, { key });
+        // })
+        // return await userData.getMany()
+
+        return await this.createQueryBuilder(ENDPOINTS.PRODUCTS).loadAllRelationIds().getMany()
     }
 }
