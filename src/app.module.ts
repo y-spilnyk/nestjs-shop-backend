@@ -32,7 +32,7 @@ import { Fridge } from "./products/products-fridge/fridge.entity"
                     database: process.env.DATABASE_NAME,
                     autoLoadEntities: true,
                     synchronize: true,
-                    // entities: [Products, Phones, Fridge]
+                    entities: [Products, Phones, Fridge]
                 };
             }
         })

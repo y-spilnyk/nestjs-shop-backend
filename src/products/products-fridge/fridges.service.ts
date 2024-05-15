@@ -13,10 +13,10 @@ export class FridgeService {
     ) {}
 
     async getFridge(filterDto: FridgeFilterDto): Promise<Fridge[]> {
-        return this.fridgesRepository.getFridge(filterDto);
+        return await this.fridgesRepository.getFridge(filterDto);
     }
 
     async createFridge(createFridgeDto: CreateFridgeDto): Promise<Fridge> {
-        return this.fridgesRepository.createFridge(createFridgeDto);
+        return await this.fridgesRepository.createFridge(createFridgeDto);
     }
 }

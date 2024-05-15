@@ -7,19 +7,19 @@ export class Fridge {
     @PrimaryGeneratedColumn()
     id: string;
 
-    @Column()
+    @Column('text')
     title: string;
 
-    @Column()
+    @Column('text')
     description: string;
 
-    @Column()
+    @Column('int')
     price: number;
 
     @Column()
     brand: FridgeBrand;
 
-    @Column()
+    @Column('int')
     capacity: number;
 
     @OneToMany(() => Products, (product) => product.fridge)
