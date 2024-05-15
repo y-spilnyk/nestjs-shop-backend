@@ -9,13 +9,13 @@ import { FridgeService } from "./fridge.service";
 export class FridgeController {
     constructor(private fridgeService: FridgeService) {}
 
-    @Get()
+    @Get('/')
     getFridge(@Query() filterDto: FridgeFilterDto): Promise<Fridge[]> {
         return this.fridgeService.getFridge(filterDto);
     }
 
     @Post()
-    createFridge(@Body() createFridgeDto: CreateFridgeDto): Promise<Fridge> {
-        return this.fridgeService.createFridge(createFridgeDto);
+    createFridge(@Body() createDto: CreateFridgeDto): Promise<Fridge> {
+        return this.fridgeService.createFridge(createDto);
     }
 }

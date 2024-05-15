@@ -25,8 +25,8 @@ export class FridgeRepository extends Repository<Fridge> {
         return await userData.getMany();
     }
 
-    async createFridge(createFridgeDto: CreateFridgeDto): Promise<Fridge> {
-        const { title, description, price, brand, capacity } = createFridgeDto;
+    async createFridge(createDto: CreateFridgeDto): Promise<Fridge> {
+        const { title, description, price, brand, capacity } = createDto;
         const createFridge = this.create({
             title,
             description,

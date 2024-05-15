@@ -16,7 +16,7 @@ export class FridgeService {
         return await this.fridgeRepository.getFridge(filterDto);
     }
 
-    async createFridge(createFridgeDto: CreateFridgeDto): Promise<Fridge> {
-        return await this.fridgeRepository.createFridge(createFridgeDto);
+    async createFridge(createDto: CreateFridgeDto): Promise<Fridge> {
+        return await this.fridgeRepository.createFridge(createDto);
     }
 }
