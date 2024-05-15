@@ -1,13 +1,14 @@
-import { EntityManager, Repository, SelectQueryBuilder } from "typeorm";
+import { DataSource, Repository, SelectQueryBuilder } from "typeorm";
 import { Phones } from "./phones.entity";
-import { Injectable, NotFoundException } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { PhonesFilterDto } from "./dto/get-Phones-filter.dto";
 import { ENDPOINTS } from "../../endpoints";
+import { CreatePhoneDto } from "./dto/create-phone.dto";
 
 @Injectable()
 export class PhonesRepository extends Repository<Phones> {
-    constructor(private readonly eManager: EntityManager) {
-        super(Phones, eManager);
+    constructor(private readonly dataSource: DataSource) {
+        super(Phones, dataSource.createEntityManager());
     }
 
     async getQuery(): Promise<SelectQueryBuilder<Phones>> {
@@ -19,11 +20,19 @@ export class PhonesRepository extends Repository<Phones> {
 
         Object.keys(filterDto).forEach((key) => {
             const value = filterDto[key];
-            console.log("=== key ===", key);
-            console.log("=== value ===", value);
-
             if (key) userData.andWhere(`${ENDPOINTS.PRODUCTS_PHONE}.${key} = :value`, { value });
         });
         return await userData.getMany();
+    }
+
+    async addPhone(createDto: CreatePhoneDto): Promise<Phones> {
+        const { title, camera, battery } = createDto;
+        const createPhone = this.create({
+            title,
+            camera,
+            battery
+        });
+        await this.save(createPhone);
+        return createPhone;
     }
 }
