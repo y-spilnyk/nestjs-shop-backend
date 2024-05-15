@@ -8,7 +8,7 @@ export class ProductsController {
     constructor(private productsService: ProductsService) {}
 
     @Get()
-    getAllProducts(): void | Products[] {
-        this.productsService.getAllProducts();
+    getAllProducts(): Promise<Products[]> {
+        return this.productsService.getAllProducts();
     }
 }
