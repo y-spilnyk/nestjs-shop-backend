@@ -1,6 +1,6 @@
 import { EntityManager, Repository, SelectQueryBuilder } from "typeorm";
 import { Phones } from "./phones.entity";
-import { Injectable } from "@nestjs/common";
+import { Injectable, NotFoundException } from "@nestjs/common";
 import { PhonesFilterDto } from "./dto/get-Phones-filter.dto";
 import { ENDPOINTS } from "../../endpoints";
 
@@ -11,7 +11,7 @@ export class PhonesRepository extends Repository<Phones> {
     }
 
     async getQuery(): Promise<SelectQueryBuilder<Phones>> {
-        return this.createQueryBuilder(ENDPOINTS.PRODUCTS_PHONES);
+        return this.createQueryBuilder(ENDPOINTS.PRODUCTS_PHONE);
     }
 
     async getPhones(filterDto: PhonesFilterDto): Promise<Phones[]> {
@@ -22,7 +22,7 @@ export class PhonesRepository extends Repository<Phones> {
             console.log("=== key ===", key);
             console.log("=== value ===", value);
 
-            if (key) userData.andWhere(`${ENDPOINTS.PRODUCTS_PHONES}.${key} = :value`, { value });
+            if (key) userData.andWhere(`${ENDPOINTS.PRODUCTS_PHONE}.${key} = :value`, { value });
         });
         return await userData.getMany();
     }

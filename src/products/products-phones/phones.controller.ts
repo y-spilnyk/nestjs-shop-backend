@@ -4,7 +4,7 @@ import { PhonesFilterDto } from "./dto/get-phones-filter.dto";
 import { Phones } from "./phones.entity";
 import { ENDPOINTS } from "../../endpoints";
 
-@Controller(ENDPOINTS.PRODUCTS_PHONES)
+@Controller(ENDPOINTS.PRODUCTS_PHONE)
 export class PhonesController {
     constructor(private tasksService: PhonesService) {}
 

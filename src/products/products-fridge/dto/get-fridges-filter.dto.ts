@@ -1,12 +1,12 @@
 import { IsEnum, IsOptional, IsString } from "class-validator";
-import { FridgesType } from "../fridges.enum";
+import { FridgeType } from "../fridge.enum";
 
-export class FridgesFilterDto {
+export class FridgeFilterDto {
     @IsOptional()
     @IsString()
     title: string;
 
     @IsOptional()
-    @IsEnum(FridgesType)
-    type: FridgesType;
+    @IsEnum(FridgeType)
+    type: FridgeType;
 }

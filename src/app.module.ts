@@ -2,10 +2,10 @@ import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { validationSchema } from "./config.schema";
-import { Fridges } from "./products/products-fridges/products";
 import { ProductsModule } from "./products/all-products/products.module";
 import { Products } from "./products/all-products/products.entity";
-import { Phones } from "./products/products-phones/phones.entity";
+import { Phones } from "./products/products-phones/phones.entity"
+import { Fridge } from "./products/products-fridge/fridge.entity"
 
 @Module({
     imports: [
@@ -32,7 +32,7 @@ import { Phones } from "./products/products-phones/phones.entity";
                     database: process.env.DATABASE_NAME,
                     autoLoadEntities: true,
                     synchronize: true,
-                    entities: [Products, Phones, Fridges]
+                    entities: [Products, Phones, Fridge]
                 };
             }
         })

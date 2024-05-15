@@ -1,6 +1,6 @@
 import { Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Phones } from "../products-phones/phones.entity";
-import { Fridges } from "../products-fridges/products";
+import { Fridge } from "../products-fridge/fridge.entity";
 
 @Entity()
 export class Products {
@@ -13,9 +13,9 @@ export class Products {
     })
     phones: Phones[];
 
-    @ManyToOne(() => Fridges, (fridges) => fridges.product, {
+    @ManyToOne(() => Fridge, (fridge) => fridge.product, {
         cascade: true,
         nullable: true
     })
-    fridges: Fridges[];
+    fridge: Fridge[];
 }

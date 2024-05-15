@@ -1,0 +1,17 @@
+import { Injectable, NotFoundException } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
+import { Fridge } from "./fridge.entity";
+import { FridgeRepository } from "./fridge.repository";
+import { FridgeFilterDto } from "./dto/get-fridges-filter.dto"
+
+@Injectable()
+export class FridgeService {
+    constructor(
+        @InjectRepository(FridgeRepository)
+        private fridgesRepository: FridgeRepository
+    ) {}
+
+    async getFridge(filterDto: FridgeFilterDto): Promise<Fridge[]> {
+        return this.fridgesRepository.getFridge(filterDto);
+    }
+}
