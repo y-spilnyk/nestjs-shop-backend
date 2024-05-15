@@ -1,5 +1,5 @@
 import { DataSource, Repository, SelectQueryBuilder } from "typeorm";
-import { Fridge } from "./Fridge.entity";
+import { Fridge } from "./fridge.entity";
 import { Injectable } from "@nestjs/common";
 import { ENDPOINTS } from "../../endpoints";
 import { FridgeFilterDto } from "./dto/get-fridge-filter.dto";
