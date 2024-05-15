@@ -16,6 +16,6 @@ export class Phones {
     @Column()
     battery: BatteryCapacity;
 
-    @OneToMany(() => Products, (product) => product.phones, { eager: false })
+    @OneToMany(() => Products, (product) => product.phones)
     product: Products[];
 }

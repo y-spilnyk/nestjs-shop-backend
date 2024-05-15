@@ -7,7 +7,7 @@ export class Products {
     @PrimaryGeneratedColumn()
     id: string;
 
-    @ManyToOne(() => Phones, (phones) => phones.product, { eager: true })
+    @ManyToOne(() => Phones, (phones) => phones.product)
     phones: Phones[];
 
     @ManyToOne(() => Fridge, (fridge) => fridge.product)
