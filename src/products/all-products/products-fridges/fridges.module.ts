@@ -1,8 +1,8 @@
 import { Module } from "@nestjs/common";
-import { FridgesService } from "./fridges.service";
-import { FridgesRepository } from "./fridges.repository";
 import { TypeOrmModule } from "@nestjs/typeorm";
+import { FridgesService } from "./fridges.service";
 import { FridgesController } from "./fridges.controller"
+import { FridgesRepository } from "./fridges.repository"
 
 @Module({
     imports: [TypeOrmModule.forFeature([FridgesRepository])],

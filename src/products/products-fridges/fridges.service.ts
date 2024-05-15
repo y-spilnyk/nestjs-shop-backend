@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Fridges } from "./fridges.entity"
+import { Fridges } from "./products"
 import { FridgesRepository } from "./fridges.repository"
 import { FridgesFilterDto } from "./dto/get-fridges-filter.dto"
 

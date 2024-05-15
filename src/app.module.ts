@@ -2,10 +2,10 @@ import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { validationSchema } from "./config.schema";
-import { ProductsModule } from "./pruducts/all-products/products.module"
-import { Products } from "./pruducts/all-products/products.entity"
-import { Phones } from "./pruducts/products-phones/phones.entity"
-import { Fridges } from "./pruducts/products-fridges/fridges.entity"
+import { Fridges } from "./products/products-fridges/products";
+import { ProductsModule } from "./products/all-products/products.module";
+import { Products } from "./products/all-products/products.entity";
+import { Phones } from "./products/products-phones/phones.entity";
 
 @Module({
     imports: [

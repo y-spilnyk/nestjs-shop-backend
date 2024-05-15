@@ -1,5 +1,5 @@
 import { EntityManager, Repository, SelectQueryBuilder } from "typeorm";
-import { Fridges } from "./fridges.entity";
+import { Fridges } from "./products";
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { FridgesFilterDto } from "./dto/get-fridges-filter.dto";
 import { ENDPOINTS } from "../../endpoints";

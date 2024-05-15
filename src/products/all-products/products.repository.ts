@@ -1,7 +1,7 @@
 import { EntityManager, Repository } from "typeorm";
 import { Injectable } from "@nestjs/common";
-import { Products } from "./products.entity";
 import { ENDPOINTS } from "../../endpoints";
+import { Products } from "./products.entity";
 
 @Injectable()
 export class ProductsRepository extends Repository<Products> {
@@ -12,7 +12,6 @@ export class ProductsRepository extends Repository<Products> {
     async getAllProducts(): Promise<Products[]> {
         try {
             const userData = await this.createQueryBuilder(ENDPOINTS.PRODUCTS).getMany();
-            console.log("=== userData ===", userData);
             return userData;
         } catch (error) {
             console.error("Error getting products:", error);

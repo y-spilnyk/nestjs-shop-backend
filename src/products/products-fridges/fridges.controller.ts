@@ -1,6 +1,6 @@
 import { Controller, Get, Query } from "@nestjs/common";
 import { FridgesService } from "./fridges.service";
-import { Fridges } from "./fridges.entity";
+import { Fridges } from "./products";
 import { ENDPOINTS } from "../../endpoints";
 import { FridgesFilterDto } from "./dto/get-fridges-filter.dto";
 
