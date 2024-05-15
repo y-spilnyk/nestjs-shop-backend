@@ -1,8 +1,9 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Products } from "../all-products/products.entity";
 import { FridgeBrand } from "../products-fridge/fridge.enum";
+import { ENDPOINTS } from "src/endpoints"
 
-@Entity({ name: "products/fridge" })
+@Entity({ name: ENDPOINTS.PRODUCT_FRIDGE })
 export class Fridge {
     @PrimaryGeneratedColumn()
     id: string;
