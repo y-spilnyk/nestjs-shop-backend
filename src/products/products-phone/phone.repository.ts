@@ -1,21 +1,21 @@
 import { DataSource, Repository, SelectQueryBuilder } from "typeorm";
-import { Phones } from "./phones.entity";
+import { Phone } from "./phone.entity";
 import { Injectable } from "@nestjs/common";
-import { PhonesFilterDto } from "./dto/get-Phones-filter.dto";
 import { ENDPOINTS } from "../../endpoints";
 import { CreatePhoneDto } from "./dto/create-phone.dto";
+import { PhoneFilterDto } from "./dto/get-phone-filter.dto"
 
 @Injectable()
-export class PhonesRepository extends Repository<Phones> {
+export class PhoneRepository extends Repository<Phone> {
     constructor(private readonly dataSource: DataSource) {
-        super(Phones, dataSource.createEntityManager());
+        super(Phone, dataSource.createEntityManager());
     }
 
-    async getQuery(): Promise<SelectQueryBuilder<Phones>> {
+    async getQuery(): Promise<SelectQueryBuilder<Phone>> {
         return this.createQueryBuilder(ENDPOINTS.PRODUCTS_PHONE);
     }
 
-    async getPhones(filterDto: PhonesFilterDto): Promise<Phones[]> {
+    async getPhones(filterDto: PhoneFilterDto): Promise<Phone[]> {
         const userData = await this.getQuery();
 
         Object.keys(filterDto).forEach((key) => {
@@ -25,7 +25,7 @@ export class PhonesRepository extends Repository<Phones> {
         return await userData.getMany();
     }
 
-    async addPhone(createDto: CreatePhoneDto): Promise<Phones> {
+    async addPhone(createDto: CreatePhoneDto): Promise<Phone> {
         const { title, camera, battery } = createDto;
         const createPhone = this.create({
             title,

@@ -1,7 +1,7 @@
 import { IsEnum, IsOptional, IsString } from "class-validator";
-import { BatteryCapacity } from "../phones-battery.enum";
+import { BatteryCapacity } from "../phone-battery.enum";
 
-export class PhonesFilterDto {
+export class PhoneFilterDto {
     @IsOptional()
     @IsString()
     title: string;

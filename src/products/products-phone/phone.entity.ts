@@ -1,9 +1,9 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { BatteryCapacity } from "./phones-battery.enum";
+import { BatteryCapacity } from "./phone-battery.enum";
 import { Products } from "../all-products/products.entity";
 
-@Entity({ name: "products/phones" })
-export class Phones {
+@Entity({ name: "products/phone" })
+export class Phone {
     @PrimaryGeneratedColumn()
     id: string;
 
@@ -16,6 +16,6 @@ export class Phones {
     @Column()
     battery: BatteryCapacity;
 
-    @OneToMany(() => Products, (product) => product.phones)
+    @OneToMany(() => Products, (product) => product.phone)
     product: Products[];
 }

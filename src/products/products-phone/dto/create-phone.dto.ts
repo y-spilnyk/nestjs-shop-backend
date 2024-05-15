@@ -1,5 +1,5 @@
-import { IsNotEmpty, IsEnum, } from "class-validator";
-import { BatteryCapacity } from "../phones-battery.enum";
+import { IsNotEmpty, IsEnum } from "class-validator";
+import { BatteryCapacity } from "../phone-battery.enum";
 
 export class CreatePhoneDto {
     @IsNotEmpty()
