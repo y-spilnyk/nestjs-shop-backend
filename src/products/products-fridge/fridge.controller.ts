@@ -1,9 +1,9 @@
 import { Body, Controller, Get, Post, Query } from "@nestjs/common";
 import { Fridge } from "./fridge.entity";
 import { ENDPOINTS } from "../../endpoints";
-import { FridgeService } from "./fridges.service";
 import { FridgeFilterDto } from "./dto/get-fridge-filter.dto";
 import { CreateFridgeDto } from "./dto/create-fridge.dto";
+import { FridgeService } from "./fridge.service";
 
 @Controller(ENDPOINTS.PRODUCT_FRIDGE)
 export class FridgeController {

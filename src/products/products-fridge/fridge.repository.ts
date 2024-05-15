@@ -1,4 +1,4 @@
-import { EntityManager, Repository, SelectQueryBuilder } from "typeorm";
+import { DataSource, Repository, SelectQueryBuilder } from "typeorm";
 import { Fridge } from "./Fridge.entity";
 import { Injectable } from "@nestjs/common";
 import { ENDPOINTS } from "../../endpoints";
@@ -7,8 +7,8 @@ import { CreateFridgeDto } from "./dto/create-fridge.dto";
 
 @Injectable()
 export class FridgeRepository extends Repository<Fridge> {
-    constructor(private readonly eManager: EntityManager) {
-        super(Fridge, eManager);
+    constructor(private readonly dataSource: DataSource) {
+        super(Fridge, dataSource.createEntityManager());
     }
 
     async getQuery(): Promise<SelectQueryBuilder<Fridge>> {
