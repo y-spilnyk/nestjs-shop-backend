@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Fridge } from "./fridge.entity";
 import { FridgeRepository } from "./fridge.repository";
@@ -9,14 +9,14 @@ import { CreateFridgeDto } from "./dto/create-fridge.dto";
 export class FridgeService {
     constructor(
         @InjectRepository(FridgeRepository)
-        private fridgesRepository: FridgeRepository
+        private fridgeRepository: FridgeRepository
     ) {}
 
     async getFridge(filterDto: FridgeFilterDto): Promise<Fridge[]> {
-        return await this.fridgesRepository.getFridge(filterDto);
+        return await this.fridgeRepository.getFridge(filterDto);
     }
 
     async createFridge(createFridgeDto: CreateFridgeDto): Promise<Fridge> {
-        return await this.fridgesRepository.createFridge(createFridgeDto);
+        return await this.fridgeRepository.createFridge(createFridgeDto);
     }
 }
