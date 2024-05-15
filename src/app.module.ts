@@ -1,12 +1,11 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { User } from "./auth/user.entity";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { validationSchema } from "./config.schema";
-import { Phones } from "./products/products-phones/phones.entity"
-import { ProductsModule } from "./products/products.module"
-import { Products } from './products/products.entity';
-import { Fridges } from "./products/products-fridges/fridges.entity"
+import { ProductsModule } from "./pruducts/all-products/products.module"
+import { Products } from "./pruducts/all-products/products.entity"
+import { Phones } from "./pruducts/products-phones/phones.entity"
+import { Fridges } from "./pruducts/products-fridges/fridges.entity"
 
 @Module({
     imports: [
@@ -33,7 +32,7 @@ import { Fridges } from "./products/products-fridges/fridges.entity"
                     database: process.env.DATABASE_NAME,
                     autoLoadEntities: true,
                     synchronize: true,
-                    entities: [User, Products, Phones, Fridges]
+                    entities: [Products, Phones, Fridges]
                 };
             }
         })

@@ -2,7 +2,6 @@ import { Injectable, NotFoundException } from "@nestjs/common";
 import { CreateTaskDto } from "./dto/create-task.dto";
 import { PhonesRepository } from "./phones.repository";
 import { InjectRepository } from "@nestjs/typeorm";
-import { User } from "../../auth/user.entity";
 import { Phones } from "./phones.entity"
 import { PhonesFilterDto } from "./dto/get-Phones-filter.dto"
 
