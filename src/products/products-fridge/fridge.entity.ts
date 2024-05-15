@@ -1,6 +1,6 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Products } from "../all-products/products.entity";
-import { FridgeType } from "../products-fridge/fridge.enum";
+import { FridgeBrand } from "../products-fridge/fridge.enum";
 
 @Entity()
 export class Fridge {
@@ -11,7 +11,16 @@ export class Fridge {
     title: string;
 
     @Column()
-    type: FridgeType;
+    description: string;
+
+    @Column()
+    price: number;
+
+    @Column()
+    brand: FridgeBrand;
+
+    @Column()
+    capacity: number;
 
     @OneToMany(() => Products, (product) => product.fridge)
     product: Products[];

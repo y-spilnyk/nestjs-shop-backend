@@ -1,21 +1,15 @@
 import { Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { Phones } from "../products-phones/phones.entity";
 import { Fridge } from "../products-fridge/fridge.entity";
+import { Phones } from "../products-phones/phones.entity"
 
 @Entity()
 export class Products {
     @PrimaryGeneratedColumn()
     id: string;
 
-    @ManyToOne(() => Phones, (phones) => phones.product, {
-        cascade: true,
-        nullable: true
-    })
+    @ManyToOne(() => Phones, (phones) => phones.product, { eager: true })
     phones: Phones[];
 
-    @ManyToOne(() => Fridge, (fridge) => fridge.product, {
-        cascade: true,
-        nullable: true
-    })
+    @ManyToOne(() => Fridge, (fridge) => fridge.product)
     fridge: Fridge[];
 }
