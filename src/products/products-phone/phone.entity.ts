@@ -1,13 +1,10 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { BatteryCapacity } from "./phone-battery.enum";
-import { Products } from "../all-products/products.entity";
+import { ChildEntity, Column } from "typeorm";
 import { ENDPOINTS } from "src/endpoints";
+import { Products } from "../all-products/products.entity";
+import { BatteryCapacity } from "./phone-battery.enum"
 
-@Entity({ name: ENDPOINTS.PRODUCTS_PHONE })
-export class Phone {
-    @PrimaryGeneratedColumn()
-    id: string;
-
+@ChildEntity({ name: ENDPOINTS.PRODUCTS_PHONE })
+export class Phone extends Products {
     @Column()
     title: string;
 
@@ -16,7 +13,4 @@ export class Phone {
 
     @Column()
     battery: BatteryCapacity;
-
-    @OneToMany(() => Products, (product) => product.phone)
-    product: Products[];
 }

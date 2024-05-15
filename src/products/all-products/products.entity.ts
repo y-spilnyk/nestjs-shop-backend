@@ -1,15 +1,9 @@
-import { Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { Fridge } from "../products-fridge/fridge.entity";
-import { Phone } from "../products-phone/phone.entity";
+import { Entity, PrimaryGeneratedColumn, TableInheritance } from "typeorm";
+import { ENDPOINTS } from "src/endpoints";
 
-@Entity()
-export class Products {
+@Entity({ name: ENDPOINTS.PRODUCTS })
+@TableInheritance({ column: { type: "varchar", name: "type" } })
+export abstract class Products {
     @PrimaryGeneratedColumn()
-    id: string;
-
-    @ManyToOne(() => Phone, (phone) => phone.product)
-    phone: Phone[];
-
-    @ManyToOne(() => Fridge, (fridge) => fridge.product)
-    fridge: Fridge[];
+    id: number;
 }

@@ -1,13 +1,10 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { ChildEntity, Column } from "typeorm";
 import { Products } from "../all-products/products.entity";
 import { FridgeBrand } from "../products-fridge/fridge.enum";
 import { ENDPOINTS } from "src/endpoints"
 
-@Entity({ name: ENDPOINTS.PRODUCT_FRIDGE })
-export class Fridge {
-    @PrimaryGeneratedColumn()
-    id: string;
-
+@ChildEntity({ name: ENDPOINTS.PRODUCT_FRIDGE })
+export class Fridge  extends Products{
     @Column("text")
     title: string;
 
@@ -22,7 +19,4 @@ export class Fridge {
 
     @Column("int")
     capacity: number;
-
-    @OneToMany(() => Products, (product) => product.fridge)
-    product: Products[];
 }
