@@ -25,12 +25,7 @@ export class PhoneRepository extends Repository<Phone> {
     }
 
     async addPhone(createDto: CreatePhoneDto): Promise<Phone> {
-        const { title, camera, battery } = createDto;
-        const createPhone = this.create({
-            title,
-            camera,
-            battery
-        });
+        const createPhone = this.create(createDto);
         await this.save(createPhone);
         return createPhone;
     }

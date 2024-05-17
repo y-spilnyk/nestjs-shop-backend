@@ -1,4 +1,4 @@
-import { DataSource, Repository, SelectQueryBuilder } from "typeorm";
+import { DataSource, Repository, SelectQueryBuilder, getRepository } from "typeorm";
 import { Injectable } from "@nestjs/common";
 import { Fridge } from "src/category/entity/fridge/fridge.entity";
 import { FridgeFilterDto } from "src/category/dto/fridge/get-fridge-filter.dto";
@@ -25,14 +25,7 @@ export class FridgeRepository extends Repository<Fridge> {
     }
 
     async createFridge(createDto: CreateFridgeDto): Promise<Fridge> {
-        const { title, description, price, brand, capacity } = createDto;
-        const createFridge = this.create({
-            title,
-            description,
-            price,
-            brand,
-            capacity
-        });
+        const createFridge = this.create(createDto);
         await this.save(createFridge);
         return createFridge;
     }
