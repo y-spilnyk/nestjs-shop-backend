@@ -1,7 +1,9 @@
 
 ## Docker
-
 docker run --name postgres-nest -p 5432:5432 -e POSTGRES_PASSWORD=postgres -d postgres 2
+
+## Postman Collection
+https://elements.getpostman.com/redirect?entityId=13579474-da3d551d-b147-4cbc-90d3-c6e710609fb8&entityType=collection
 
 ## .env.stage.dev
 - DATABASE_HOST="localhost"
