@@ -10,11 +10,8 @@ export class ProductsRepository extends Repository<Products> {
 
     async getAllProducts(): Promise<Products[]> {
         try {
-            return await this.find({
-                relations: ["category"]
-            });
-            // const userData = await this.createQueryBuilder(ENDPOINTS.PRODUCTS).getMany();
-            // return userData;
+            const userData = await this.createQueryBuilder("products").getMany();
+            return userData;
         } catch (error) {
             console.error("Error getting products:", error);
             throw error;

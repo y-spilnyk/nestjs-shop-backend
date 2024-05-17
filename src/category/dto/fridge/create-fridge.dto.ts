@@ -1,5 +1,6 @@
-import { IsNotEmpty, IsEnum } from "class-validator";
+import { IsNotEmpty, IsEnum, IsOptional } from "class-validator";
 import { FridgeBrand } from "src/category/enum/fridge/fridge.enum";
+import { Generated } from "typeorm";
 
 export class CreateFridgeDto {
     @IsNotEmpty()

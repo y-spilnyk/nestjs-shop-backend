@@ -3,6 +3,8 @@ import { Injectable } from "@nestjs/common";
 import { Fridge } from "src/category/entity/fridge/fridge.entity";
 import { FridgeFilterDto } from "src/category/dto/fridge/get-fridge-filter.dto";
 import { CreateFridgeDto } from "src/category/dto/fridge/create-fridge.dto";
+import { GetProduct } from "src/get-product.decorator";
+import { Products } from "src/products/products.entity"
 
 @Injectable()
 export class FridgeRepository extends Repository<Fridge> {
@@ -24,8 +26,11 @@ export class FridgeRepository extends Repository<Fridge> {
         return await userData.getMany();
     }
 
-    async createFridge(createDto: CreateFridgeDto): Promise<Fridge> {
-        const createFridge = this.create(createDto);
+    async createFridge(createDto: CreateFridgeDto, @GetProduct() products: Products): Promise<Fridge> {
+        const createFridge = this.create({
+            ...createDto,
+            products
+        });
         await this.save(createFridge);
         return createFridge;
     }

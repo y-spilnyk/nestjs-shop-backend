@@ -6,6 +6,8 @@ import { PhoneFilterDto } from "./dto/phone/get-phone-filter.dto";
 import { Phone } from "./entity/phone/phone.entity";
 import { CreatePhoneDto } from "./dto/phone/create-phone.dto";
 import { Fridge } from "./entity/fridge/fridge.entity";
+import { GetProduct } from "../get-product.decorator";
+import { Products } from "src/products/products.entity";
 
 @Controller("category")
 export class CategoryController {
@@ -17,8 +19,11 @@ export class CategoryController {
     }
 
     @Post("/fridge")
-    createFridge(@Body() createDto: CreateFridgeDto): Promise<Fridge> {
-        return this.categoryService.createFridge(createDto);
+    createFridge(
+        @Body() createDto: CreateFridgeDto,
+        @GetProduct() products: Products
+    ): Promise<Fridge> {
+        return this.categoryService.createFridge(createDto, products);
     }
 
     @Get("/phone")

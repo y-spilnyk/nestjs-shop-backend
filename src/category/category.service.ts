@@ -8,6 +8,8 @@ import { CreateFridgeDto } from "./dto/fridge/create-fridge.dto";
 import { Fridge } from "./entity/fridge/fridge.entity";
 import { FridgeRepository } from "./repository/fridge/fridge.repository";
 import { PhoneRepository } from "./repository/phone/photo.repository";
+import { GetProduct } from "../get-product.decorator";
+import { Products } from "src/products/products.entity"
 
 @Injectable()
 export class CategoryService {
@@ -22,8 +24,8 @@ export class CategoryService {
         return await this.fridgeRepository.getFridge(filterDto);
     }
 
-    async createFridge(createDto: CreateFridgeDto): Promise<Fridge> {
-        return await this.fridgeRepository.createFridge(createDto);
+    async createFridge(createDto: CreateFridgeDto, @GetProduct() products: Products): Promise<Fridge> {
+        return await this.fridgeRepository.createFridge(createDto, products);
     }
 
     async getPhones(filterDto: PhoneFilterDto): Promise<Phone[]> {

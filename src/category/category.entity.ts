@@ -1,3 +1,4 @@
+import { Exclude } from "class-transformer";
 import { Products } from "src/products/products.entity";
 import { Entity, Column, PrimaryGeneratedColumn, TableInheritance, ManyToOne } from "typeorm";
 
@@ -16,6 +17,7 @@ export abstract class Category {
     @Column("int", { nullable: true })
     price: number;
 
-    @ManyToOne(() => Products, (products) => products.category)
+    @ManyToOne(() => Products, (products) => products.category, { eager: false })
+    @Exclude({ toPlainOnly: true })
     products: Products;
 }
