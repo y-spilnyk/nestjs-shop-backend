@@ -1,12 +1,12 @@
-import { DataSource, Repository } from "typeorm";
+import { EntityManager, Repository } from "typeorm";
 import { Injectable } from "@nestjs/common";
-import { ENDPOINTS } from "../../endpoints";
+import { ENDPOINTS } from "../endpoints";
 import { Products } from "./products.entity";
 
 @Injectable()
 export class ProductsRepository extends Repository<Products> {
-    constructor(private readonly dataSource: DataSource) {
-        super(Products, dataSource.createEntityManager());
+    constructor(private readonly entityManager: EntityManager) {
+        super(Products, entityManager);
     }
 
     async getAllProducts(): Promise<Products[]> {

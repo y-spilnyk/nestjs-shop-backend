@@ -1,5 +1,5 @@
 import { IsEnum, IsOptional, IsString } from "class-validator";
-import { FridgeBrand } from "../fridge.enum";
+import { FridgeBrand } from "src/category/enum/fridge/fridge.enum"
 
 export class FridgeFilterDto {
     @IsOptional()

@@ -1,9 +1,8 @@
 import { DataSource, Repository, SelectQueryBuilder } from "typeorm";
-import { Phone } from "./phone.entity";
 import { Injectable } from "@nestjs/common";
-import { ENDPOINTS } from "../../endpoints";
-import { CreatePhoneDto } from "./dto/create-phone.dto";
-import { PhoneFilterDto } from "./dto/get-phone-filter.dto"
+import { Phone } from "src/category/entity/phone/phone.entity";
+import { PhoneFilterDto } from "src/category/dto/phone/get-phone-filter.dto";
+import { CreatePhoneDto } from "src/category/dto/phone/create-phone.dto";
 
 @Injectable()
 export class PhoneRepository extends Repository<Phone> {
@@ -12,7 +11,7 @@ export class PhoneRepository extends Repository<Phone> {
     }
 
     async getQuery(): Promise<SelectQueryBuilder<Phone>> {
-        return this.createQueryBuilder(ENDPOINTS.PRODUCTS_PHONE);
+        return this.createQueryBuilder("category");
     }
 
     async getPhones(filterDto: PhoneFilterDto): Promise<Phone[]> {
@@ -20,7 +19,7 @@ export class PhoneRepository extends Repository<Phone> {
 
         Object.keys(filterDto).forEach((key) => {
             const value = filterDto[key];
-            if (key) userData.andWhere(`${ENDPOINTS.PRODUCTS_PHONE}.${key} = :value`, { value });
+            if (key) userData.andWhere(`category.phone.${key} = :value`, { value });
         });
         return await userData.getMany();
     }

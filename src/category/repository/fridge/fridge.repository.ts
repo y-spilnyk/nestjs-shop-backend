@@ -1,9 +1,8 @@
 import { DataSource, Repository, SelectQueryBuilder } from "typeorm";
-import { Fridge } from "./fridge.entity";
 import { Injectable } from "@nestjs/common";
-import { ENDPOINTS } from "../../endpoints";
-import { FridgeFilterDto } from "./dto/get-fridge-filter.dto";
-import { CreateFridgeDto } from "./dto/create-fridge.dto";
+import { Fridge } from "src/category/entity/fridge/fridge.entity";
+import { FridgeFilterDto } from "src/category/dto/fridge/get-fridge-filter.dto";
+import { CreateFridgeDto } from "src/category/dto/fridge/create-fridge.dto";
 
 @Injectable()
 export class FridgeRepository extends Repository<Fridge> {
@@ -12,7 +11,7 @@ export class FridgeRepository extends Repository<Fridge> {
     }
 
     async getQuery(): Promise<SelectQueryBuilder<Fridge>> {
-        return this.createQueryBuilder(ENDPOINTS.PRODUCT_FRIDGE);
+        return this.createQueryBuilder("fridge");
     }
 
     async getFridge(filterDto: FridgeFilterDto): Promise<Fridge[]> {
@@ -20,7 +19,7 @@ export class FridgeRepository extends Repository<Fridge> {
 
         Object.keys(filterDto).forEach((key) => {
             const value = filterDto[key];
-            if (key) userData.andWhere(`${ENDPOINTS.PRODUCT_FRIDGE}.${key} = :value`, { value });
+            if (key) userData.andWhere(`$category.fridge.${key} = :value`, { value });
         });
         return await userData.getMany();
     }

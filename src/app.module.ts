@@ -2,10 +2,11 @@ import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { validationSchema } from "./config.schema";
-import { ProductsModule } from "./products/all-products/products.module";
-import { Products } from "./products/all-products/products.entity";
-import { Fridge } from "./products/products-fridge/fridge.entity";
-import { Phone } from "./products/products-phone/phone.entity";
+import { ProductsModule } from "./products/products.module";
+import { Products } from "./products/products.entity";
+import { Phone } from "./category/entity/phone/phone.entity";
+import { Fridge } from "./category/entity/fridge/fridge.entity";
+import { CategoryModule } from "./category/category.module"
 
 @Module({
     imports: [
@@ -15,7 +16,7 @@ import { Phone } from "./products/products-phone/phone.entity";
         }),
         ProductsModule,
         TypeOrmModule.forRootAsync({
-            imports: [ConfigModule],
+            imports: [ConfigModule, CategoryModule],
             inject: [ConfigService],
             useFactory: async (configService: ConfigService) => {
                 const isProduction: boolean = configService.get("STAGE") === "prod";

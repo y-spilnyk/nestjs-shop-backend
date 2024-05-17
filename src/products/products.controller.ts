@@ -1,6 +1,6 @@
 import { Controller, Get } from "@nestjs/common";
 import { ProductsService } from "./products.service";
-import { ENDPOINTS } from "../../endpoints";
+import { ENDPOINTS } from "../endpoints";
 import { Products } from "./products.entity";
 
 @Controller(ENDPOINTS.PRODUCTS)

@@ -1,5 +1,6 @@
 export enum ENDPOINTS {
-    PRODUCTS = 'products',
-    PRODUCTS_PHONE = 'products/phone',
-    PRODUCT_FRIDGE = 'products/fridge'
+    PRODUCTS = "products",
+    CATEGORY = "category",
+    CATEGORY_PHONE = "hone",
+    CATEGORY_FRIDGE = "fridge"
 }
