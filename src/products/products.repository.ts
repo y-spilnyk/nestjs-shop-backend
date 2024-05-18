@@ -3,6 +3,7 @@ import { Injectable } from "@nestjs/common";
 import { Product } from "./products.entity";
 import { CreateProductDto } from "./dto/create-products.dto";
 import { CategoryRepository } from "../category/category.repository";
+import { Category } from "src/category/category.entity";
 
 @Injectable()
 export class ProductsRepository extends Repository<Product> {
@@ -23,8 +24,11 @@ export class ProductsRepository extends Repository<Product> {
         }
     }
 
-    async createProduct(data: CreateProductDto): Promise<Product> {
-        const product = this.create(data);
+    async createProduct(data: CreateProductDto, categoryId: Category): Promise<Product> {
+        const product = this.create({
+            ...data,
+            category: categoryId
+        });
         return await this.save(product);
     }
 }

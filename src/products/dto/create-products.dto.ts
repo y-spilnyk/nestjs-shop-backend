@@ -18,6 +18,9 @@ export class CreateProductDto {
     @IsNotEmpty()
     price: number;
 
+    @IsNotEmpty()
+    categoryId: string;
+
     @ManyToOne(() => Category, (category) => category.products)
     category: Category;
 }
