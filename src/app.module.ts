@@ -1,12 +1,14 @@
+import { FeaturesModule } from "./features/features.module";
+import { CategoryModule } from "./category/category.module";
+import { ProductsModule } from "./products/products.module";
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { validationSchema } from "./config.schema";
-import { ProductsModule } from "./products/products.module";
 import { Products } from "./products/products.entity";
 import { Phone } from "./category/entity/phone/phone.entity";
 import { Fridge } from "./category/entity/fridge/fridge.entity";
-import { CategoryModule } from "./category/category.module"
+import { Features } from "./features/features.entity"
 
 @Module({
     imports: [
@@ -14,9 +16,8 @@ import { CategoryModule } from "./category/category.module"
             envFilePath: `.env.stage.${process.env.STAGE}`,
             validationSchema: validationSchema
         }),
-        ProductsModule,
         TypeOrmModule.forRootAsync({
-            imports: [ConfigModule, CategoryModule],
+            imports: [ConfigModule, CategoryModule, ProductsModule, FeaturesModule],
             inject: [ConfigService],
             useFactory: async (configService: ConfigService) => {
                 const isProduction: boolean = configService.get("STAGE") === "prod";
@@ -33,7 +34,7 @@ import { CategoryModule } from "./category/category.module"
                     database: process.env.DATABASE_NAME,
                     autoLoadEntities: true,
                     synchronize: true,
-                    entities: [Products, Phone, Fridge]
+                    entities: [Products, Phone, Fridge, Features]
                 };
             }
         })
