@@ -1,4 +1,4 @@
-export class UpdateFeaturesDtoDto {
-    name: string;
+export class CreateFeaturesDto {
+    title: string;
     values: string[];
 }

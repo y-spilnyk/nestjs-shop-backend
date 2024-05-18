@@ -1,20 +1,28 @@
 import { EntityManager, Repository } from "typeorm";
-import { Injectable } from "@nestjs/common";
-import { Features } from "./features.entity";
+import { Injectable, NotFoundException } from "@nestjs/common";
+import { Feature } from "./features.entity";
+import { CreateFeaturesDto } from "./dto/create-features.dto";
 
 @Injectable()
-export class FeaturesRepository extends Repository<Features> {
+export class FeaturesRepository extends Repository<Feature> {
     constructor(private readonly entityManager: EntityManager) {
-        super(Features, entityManager);
+        super(Feature, entityManager);
     }
 
-    async getAllFeatures(): Promise<Features[]> {
-        try {
-            const userData = await this.createQueryBuilder("features").getMany();
-            return userData;
-        } catch (error) {
-            console.error("Error getting products:", error);
-            throw error;
-        }
+    async getAllFeatures(): Promise<Feature[]> {
+        const getFeatures = await this.createQueryBuilder("features").getMany();
+        if (!getFeatures) throw new NotFoundException();
+        return getFeatures;
+    }
+
+    async getFeatureIdByValue(featureId: string): Promise<Feature> {
+        const getFeatureId = await this.findOneBy({ id: featureId });
+        if (!getFeatureId) throw new NotFoundException();
+        return getFeatureId;
+    }
+
+    async createFeature(data: CreateFeaturesDto): Promise<Feature> {
+        const createFeature = this.create(data);
+        return await this.save(createFeature);
     }
 }

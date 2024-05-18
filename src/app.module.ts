@@ -6,7 +6,8 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { validationSchema } from "./config.schema";
 import { Product } from "./products/products.entity";
-import { Features } from "./features/features.entity";
+import { Feature } from "./features/features.entity";
+import { Category } from "./category/category.entity";
 
 @Module({
     imports: [
@@ -32,7 +33,7 @@ import { Features } from "./features/features.entity";
                     database: process.env.DATABASE_NAME,
                     autoLoadEntities: true,
                     synchronize: true,
-                    entities: [Product, Features]
+                    entities: [Product, Category, Feature]
                 };
             }
         })
