@@ -1,16 +1,12 @@
 import { EntityManager, Repository } from "typeorm";
-import { Injectable } from "@nestjs/common";
+import { Injectable, NotFoundException } from "@nestjs/common";
 import { Product } from "./products.entity";
 import { CreateProductDto } from "./dto/create-products.dto";
-import { CategoryRepository } from "../category/category.repository";
 import { Category } from "src/category/category.entity";
 
 @Injectable()
 export class ProductsRepository extends Repository<Product> {
-    constructor(
-        private readonly entityManager: EntityManager,
-        private categoryRepository: CategoryRepository
-    ) {
+    constructor(private readonly entityManager: EntityManager) {
         super(Product, entityManager);
     }
 
@@ -22,6 +18,14 @@ export class ProductsRepository extends Repository<Product> {
             console.error("Error getting products:", error);
             throw error;
         }
+    }
+
+    async getProductById(id: string): Promise<Product> {
+        const userData = await this.createQueryBuilder("products")
+            .where((id = id))
+            .getOne();
+        if (!userData) throw new NotFoundException();
+        return userData;
     }
 
     async createProduct(data: CreateProductDto, categoryId: Category): Promise<Product> {

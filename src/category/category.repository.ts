@@ -1,5 +1,5 @@
 import { EntityManager, Repository } from "typeorm";
-import { Injectable } from "@nestjs/common";
+import { Injectable, NotFoundException } from "@nestjs/common";
 import { Category } from "./category.entity";
 import { CategoryDto } from "./dto/category.dto";
 
@@ -20,6 +20,7 @@ export class CategoryRepository extends Repository<Category> {
 
     async getCategoryById(categoryId: string): Promise<Category> {
         const getCategory = await this.findOneBy({ id: categoryId });
+        if (!getCategory) throw new NotFoundException();
         return getCategory;
     }
 }

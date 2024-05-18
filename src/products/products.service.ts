@@ -3,7 +3,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { ProductsRepository } from "./products.repository";
 import { Product } from "./products.entity";
 import { CreateProductDto } from "./dto/create-products.dto";
-import { CategoryService } from '../category/category.service';
+import { CategoryService } from "../category/category.service";
 @Injectable()
 export class ProductsService {
     constructor(
@@ -14,6 +14,10 @@ export class ProductsService {
 
     async getAllProducts(): Promise<Product[]> {
         return await this.productsRepository.getAllProducts();
+    }
+
+    async getProductById(id: string): Promise<Product> {
+        return await this.productsRepository.getProductById(id);
     }
 
     async createProduct(createDto: CreateProductDto): Promise<Product> {
