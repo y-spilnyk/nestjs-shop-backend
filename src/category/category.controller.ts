@@ -1,6 +1,6 @@
-import { Body, Controller, Get, Post, Query } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post, Query } from "@nestjs/common";
 import { CategoryService } from "./category.service";
-import { CategoriesFilterDto } from "./dto/categories.filter.dto";
+import { CategoryDto } from "./dto/category.dto";
 import { Category } from "./category.entity";
 
 @Controller("categories")
@@ -13,7 +13,12 @@ export class CategoryController {
     }
 
     @Get("/:id/product")
-    getCategoryById(@Query() filterDto: CategoriesFilterDto): Promise<Category[]> {
-        return this.categoryService.getCategoryById(filterDto);
+    getCategoryById(@Param("id") categoryId: string): Promise<Category> {
+        return this.categoryService.getCategoryById(categoryId);
+    }
+
+    @Post()
+    createCategory(@Body() createDto: CategoryDto): Promise<Category> {
+        return this.categoryService.createCategory(createDto);
     }
 }

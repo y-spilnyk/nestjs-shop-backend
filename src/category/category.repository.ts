@@ -1,7 +1,7 @@
 import { EntityManager, Repository } from "typeorm";
 import { Injectable } from "@nestjs/common";
 import { Category } from "./category.entity";
-import { CategoriesFilterDto } from "./dto/categories.filter.dto";
+import { CategoryDto } from "./dto/category.dto";
 
 @Injectable()
 export class CategoryRepository extends Repository<Category> {
@@ -10,15 +10,16 @@ export class CategoryRepository extends Repository<Category> {
     }
 
     async getCategories(): Promise<Category[]> {
-        return await this.createQueryBuilder("category").getMany();
+        return await this.createQueryBuilder("categories").getMany();
     }
 
-    async getCategoryById(filterDto: CategoriesFilterDto): Promise<Category[]> {
-        const userData = this.createQueryBuilder("category");
+    async createCategory(createDto: CategoryDto): Promise<Category> {
+        const category = this.create(createDto);
+        return await this.save(category);
+    }
 
-        if (filterDto) {
-            userData.andWhere("category.id = :id", { id: filterDto.id });
-        }
-        return await userData.getMany();
+    async getCategoryById(categoryId: string): Promise<Category> {
+        const getCategory = await this.findOneBy({ id: categoryId });
+        return getCategory;
     }
 }

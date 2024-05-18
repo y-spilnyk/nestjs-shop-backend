@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { CategoriesFilterDto } from "./dto/categories.filter.dto";
+import { CategoryDto } from "./dto/category.dto";
 import { Category } from "./category.entity";
 import { CategoryRepository } from "./category.repository";
 
@@ -15,7 +15,11 @@ export class CategoryService {
         return await this.categoryRepository.getCategories();
     }
 
-    async getCategoryById(filterDto: CategoriesFilterDto): Promise<Category[]> {
-        return await this.categoryRepository.getCategoryById(filterDto);
+    async getCategoryById(categoryId: string): Promise<Category> {
+        return await this.categoryRepository.getCategoryById(categoryId);
+    }
+
+    async createCategory(data: CategoryDto): Promise<Category> {
+        return await this.categoryRepository.createCategory(data);
     }
 }

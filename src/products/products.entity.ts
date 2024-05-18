@@ -1,10 +1,9 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Category } from "src/category/category.entity";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity({
-    name: 'products'
-})
+@Entity({ name: "products" })
 export class Product {
-    @PrimaryGeneratedColumn("uuid")
+    @PrimaryGeneratedColumn()
     id: number;
 
     @Column({ nullable: true })
@@ -13,6 +12,6 @@ export class Product {
     @Column({ nullable: true })
     description: string;
 
-    // @OneToMany(() => Category, (category) => category.products, { eager: true })
-    // category: Category[];
+    @ManyToOne(() => Category, (category) => category.products)
+    category: Category;
 }

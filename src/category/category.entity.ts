@@ -1,25 +1,17 @@
-import { Entity, Column, PrimaryGeneratedColumn, TableInheritance, ManyToOne } from "typeorm";
+import { Product } from "src/products/products.entity";
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from "typeorm";
 
-@Entity({
-    name: "categories"
-})
-@TableInheritance({ column: { type: "varchar", name: "type" } })
-export abstract class Category {
+@Entity({ name: "categories" })
+export class Category {
     @PrimaryGeneratedColumn("uuid")
-    id: number;
+    id: string;
 
     @Column("text")
     title: string;
 
-    @Column("text", {
-        unique: true
-    })
-    handle: string;
-
     @Column("text", { nullable: true })
     description: string;
 
-    // @ManyToOne(() => Product, (products) => products.category, { eager: false })
-    // @Exclude({ toPlainOnly: true })
-    // products: Product;
+    @OneToMany(() => Product, (product) => product.category)
+    products: Product[];
 }
