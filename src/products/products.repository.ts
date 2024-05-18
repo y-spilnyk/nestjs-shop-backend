@@ -15,8 +15,6 @@ export class ProductsRepository extends Repository<Product> {
 
     async getAllProducts(): Promise<Product[]> {
         try {
-            console.log("da");
-
             const userData = await this.find();
             return userData;
         } catch (error) {
@@ -26,20 +24,7 @@ export class ProductsRepository extends Repository<Product> {
     }
 
     async createProduct(data: CreateProductDto): Promise<Product> {
-        try {
-            // get category by id
-            const { categoryId } = data;
-            // const newProducts = {...data}
-            // if (categoryId) {
-            //     const getCategory = await this.categoryRepository.getCategoryById(
-            //         categoryId as any
-            //     );
-            //     if (getCategory?.id) {
-            //         newProducts.category = getCategory
-            //     }
-            // }
-            const product = this.create(data);
-            return await this.save(product);
-        } catch (error) {}
+        const product = this.create(data);
+        return await this.save(product);
     }
 }

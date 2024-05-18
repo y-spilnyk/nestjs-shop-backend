@@ -12,6 +12,6 @@ export class Product {
     @Column({ nullable: true })
     description: string;
 
-    @ManyToOne(() => Category, (category) => category.products)
+    @ManyToOne(() => Category, (category) => category.products, { eager: false })
     category: Category;
 }
