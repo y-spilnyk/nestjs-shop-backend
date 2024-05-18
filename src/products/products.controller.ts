@@ -1,13 +1,19 @@
-import { Controller, Get } from "@nestjs/common";
+import { Controller, Get, Post, Body, Query } from "@nestjs/common";
 import { ProductsService } from "./products.service";
-import { Products } from "./products.entity";
+import { Product } from "./products.entity";
+import { CreateProductDto } from "./dto/create-products.dto";
 
-@Controller('products')
+@Controller("products")
 export class ProductsController {
     constructor(private productsService: ProductsService) {}
 
     @Get()
-    getAllProducts(): Promise<Products[]> {
+    getAllProducts(): Promise<Product[]> {
         return this.productsService.getAllProducts();
+    }
+
+    @Post()
+    createProduct(@Body() createDto: CreateProductDto): Promise<Product> {
+        return this.productsService.createProduct(createDto);
     }
 }

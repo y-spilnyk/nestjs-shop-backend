@@ -1,38 +1,19 @@
 import { Body, Controller, Get, Post, Query } from "@nestjs/common";
 import { CategoryService } from "./category.service";
-import { FridgeFilterDto } from "./dto/fridge/get-fridge-filter.dto";
-import { CreateFridgeDto } from "./dto/fridge/create-fridge.dto";
-import { PhoneFilterDto } from "./dto/phone/get-phone-filter.dto";
-import { Phone } from "./entity/phone/phone.entity";
-import { CreatePhoneDto } from "./dto/phone/create-phone.dto";
-import { Fridge } from "./entity/fridge/fridge.entity";
-import { GetProduct } from "../get-product.decorator";
-import { Products } from "src/products/products.entity";
+import { CategoriesFilterDto } from "./dto/categories.filter.dto";
+import { Category } from "./category.entity";
 
-@Controller("category")
+@Controller("categories")
 export class CategoryController {
     constructor(private categoryService: CategoryService) {}
 
-    @Get("/fridge")
-    getFridge(@Query() filterDto: FridgeFilterDto): Promise<Fridge[]> {
-        return this.categoryService.getFridge(filterDto);
+    @Get()
+    getCategories(): Promise<Category[]> {
+        return this.categoryService.getCategories();
     }
 
-    @Post("/fridge")
-    createFridge(
-        @Body() createDto: CreateFridgeDto,
-        @GetProduct() products: Products
-    ): Promise<Fridge> {
-        return this.categoryService.createFridge(createDto, products);
-    }
-
-    @Get("/phone")
-    getPhones(@Query() filterDto: PhoneFilterDto): Promise<Phone[]> {
-        return this.categoryService.getPhones(filterDto);
-    }
-
-    @Post("/phone")
-    addPhone(@Body() createDto: CreatePhoneDto): Promise<Phone> {
-        return this.categoryService.addPhone(createDto);
+    @Get("/:id/product")
+    getCategoryById(@Query() filterDto: CategoriesFilterDto): Promise<Category[]> {
+        return this.categoryService.getCategoryById(filterDto);
     }
 }

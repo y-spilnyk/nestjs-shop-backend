@@ -1,23 +1,25 @@
-import { Exclude } from "class-transformer";
-import { Products } from "src/products/products.entity";
 import { Entity, Column, PrimaryGeneratedColumn, TableInheritance, ManyToOne } from "typeorm";
 
-@Entity()
+@Entity({
+    name: "categories"
+})
 @TableInheritance({ column: { type: "varchar", name: "type" } })
 export abstract class Category {
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn("uuid")
     id: number;
 
     @Column("text")
     title: string;
 
+    @Column("text", {
+        unique: true
+    })
+    handle: string;
+
     @Column("text", { nullable: true })
     description: string;
 
-    @Column("int", { nullable: true })
-    price: number;
-
-    @ManyToOne(() => Products, (products) => products.category, { eager: false })
-    @Exclude({ toPlainOnly: true })
-    products: Products;
+    // @ManyToOne(() => Product, (products) => products.category, { eager: false })
+    // @Exclude({ toPlainOnly: true })
+    // products: Product;
 }

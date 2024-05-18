@@ -1,14 +1,15 @@
 import { EntityManager, Repository } from "typeorm";
 import { Injectable } from "@nestjs/common";
-import { Products } from "./products.entity";
+import { Product } from "./products.entity";
+import { CreateProductDto } from "./dto/create-products.dto"
 
 @Injectable()
-export class ProductsRepository extends Repository<Products> {
+export class ProductsRepository extends Repository<Product> {
     constructor(private readonly entityManager: EntityManager) {
-        super(Products, entityManager);
+        super(Product, entityManager);
     }
 
-    async getAllProducts(): Promise<Products[]> {
+    async getAllProducts(): Promise<Product[]> {
         try {
             const userData = await this.createQueryBuilder("products").getMany();
             return userData;
@@ -16,5 +17,14 @@ export class ProductsRepository extends Repository<Products> {
             console.error("Error getting products:", error);
             throw error;
         }
+    }
+
+    async createProduct(data: CreateProductDto): Promise<Product> {
+        try {
+            // get category by id
+            const product = this.create(data);
+            
+            return await this.save(product);
+        } catch (error) {}
     }
 }

@@ -5,10 +5,8 @@ import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { validationSchema } from "./config.schema";
-import { Products } from "./products/products.entity";
-import { Phone } from "./category/entity/phone/phone.entity";
-import { Fridge } from "./category/entity/fridge/fridge.entity";
-import { Features } from "./features/features.entity"
+import { Product } from "./products/products.entity";
+import { Features } from "./features/features.entity";
 
 @Module({
     imports: [
@@ -34,7 +32,7 @@ import { Features } from "./features/features.entity"
                     database: process.env.DATABASE_NAME,
                     autoLoadEntities: true,
                     synchronize: true,
-                    entities: [Products, Phone, Fridge, Features]
+                    entities: [Product, Features]
                 };
             }
         })
