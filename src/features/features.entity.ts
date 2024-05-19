@@ -1,4 +1,4 @@
-import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({ name: "features" })
 export class Feature {
@@ -11,17 +11,6 @@ export class Feature {
     @Column("text", { array: true, default: "{}" })
     values: string[];
 
-    @ManyToMany(() => Feature, (feature) => feature.products)
-    // @JoinTable({
-    //     name: "product_features",
-    //     joinColumn: {
-    //         name: "feature_id",
-    //         referencedColumnName: "id"
-    //     },
-    //     inverseJoinColumn: {
-    //         name: "product_id",
-    //         referencedColumnName: "id"
-    //     }
-    // })
+    @OneToMany(() => Feature, (feature) => feature.products)
     products: Feature[];
 }

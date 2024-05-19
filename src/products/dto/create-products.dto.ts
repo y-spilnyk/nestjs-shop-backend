@@ -1,6 +1,4 @@
 import { IsNotEmpty, IsOptional } from "class-validator";
-import { Category } from "src/category/category.entity";
-import { ManyToOne } from "typeorm";
 
 export class CreateProductDto {
     @IsNotEmpty()
@@ -18,9 +16,11 @@ export class CreateProductDto {
     @IsNotEmpty()
     price: number;
 
+    @IsOptional()
     @IsNotEmpty()
     categoryId: string;
 
-    @ManyToOne(() => Category, (category) => category.products)
-    category: Category;
+    @IsOptional()
+    @IsNotEmpty()
+    featureId: string;
 }

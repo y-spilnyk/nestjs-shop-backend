@@ -1,6 +1,6 @@
 import { Category } from "src/category/category.entity";
 import { Feature } from "src/features/features.entity";
-import { Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({ name: "products" })
 export class Product {
@@ -16,7 +16,6 @@ export class Product {
     @ManyToOne(() => Category, (category) => category.products, { eager: false })
     category: Category;
 
-    @ManyToMany(() => Feature, (feature) => feature.products, { eager: false })
-    @JoinTable()
-    features: Feature[];
+    @ManyToOne(() => Feature, (feature) => feature.products, { eager: false })
+    feature: Feature;
 }
