@@ -1,21 +1,31 @@
+import { IsNotEmpty } from "class-validator";
 import { Category } from "src/category/category.entity";
 import { Feature } from "src/features/features.entity";
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, ManyToMany, PrimaryGeneratedColumn, JoinTable } from "typeorm";
 
 @Entity({ name: "products" })
 export class Product {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({ nullable: true })
+    @IsNotEmpty()
+    @Column()
     title: string;
 
-    @Column({ nullable: true })
+    @IsNotEmpty()
+    @Column()
     description: string;
 
-    @ManyToOne(() => Category, (category) => category.products, { eager: false })
+    @Column({ nullable: true })
+    brand: string;
+
+    @Column({ nullable: true })
+    capacity: number;
+
+    @ManyToOne(() => Category, (category) => category.products)
     category: Category;
 
-    @ManyToOne(() => Feature, (feature) => feature.products, { eager: false })
+    @ManyToMany(() => Feature, { cascade: true })
+    @JoinTable({ name: "product_features" })
     feature: Feature;
 }

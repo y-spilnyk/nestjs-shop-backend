@@ -1,4 +1,4 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({ name: "features" })
 export class Feature {
@@ -10,7 +10,4 @@ export class Feature {
 
     @Column("text", { array: true, default: "{}" })
     values: string[];
-
-    @OneToMany(() => Feature, (feature) => feature.products)
-    products: Feature[];
 }
