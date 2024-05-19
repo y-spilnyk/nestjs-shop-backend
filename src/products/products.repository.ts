@@ -37,7 +37,7 @@ export class ProductsRepository extends Repository<Product> {
         const product = this.create({
             ...data,
             category: category,
-            feature: feature
+            feature: [feature]
         });
         return await this.save(product);
     }

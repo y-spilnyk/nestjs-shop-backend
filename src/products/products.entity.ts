@@ -27,5 +27,5 @@ export class Product {
 
     @ManyToMany(() => Feature, { cascade: true })
     @JoinTable({ name: "product_features" })
-    feature: Feature;
+    feature: Feature[];
 }
