@@ -26,11 +26,11 @@ import { Category } from "./category/category.entity";
                         ssl: isProduction ? { rejectUnauthorized: false } : null
                     },
                     type: "postgres",
-                    host: process.env.DATABASE_HOST,
+                    host: process.env.DATABASE_HOST || process.env.POSTGRES_HOST,
                     port: parseInt(process.env.DATABASE_PORT),
-                    username: process.env.USERNAME,
-                    password: process.env.PASSWORD,
-                    database: process.env.DATABASE_NAME,
+                    username: process.env.USERNAME || process.env.POSTGRES_USER,
+                    password: process.env.PASSWORD || process.env.POSTGRES_PASSWORD,
+                    database: process.env.DATABASE_NAME || process.env.POSTGRES_DATABASE,
                     autoLoadEntities: true,
                     synchronize: true,
                     entities: [Product, Category, Feature]
