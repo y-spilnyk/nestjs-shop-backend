@@ -21,7 +21,7 @@ export class ProductsRepository extends Repository<Product> {
         }
     }
 
-    async getProductById(id: string): Promise<any> {
+    async getProductById(id: string): Promise<Product> {
         const userData = await this.createQueryBuilder("products")
             .where((id = id))
             .getOne();
