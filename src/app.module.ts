@@ -25,12 +25,12 @@ import { Category } from "./category/category.entity";
                     extra: {
                         ssl: isProduction ? { rejectUnauthorized: false } : null
                     },
-                    type: "mysql",
-                    host: process.env.DATABASE_HOST || process.env.STACKHERO_MYSQL_HOST,
-                    port: parseInt(process.env.DATABASE_PORT) || 3306,
-                    username: process.env.USERNAME || 'root',
-                    password: process.env.PASSWORD || process.env.STACKHERO_MYSQL_ROOT_PASSWORD,
-                    database: process.env.DATABASE_NAME || 'root',
+                    type: "postgres",
+                    host: process.env.DATABASE_HOST || process.env.POSTGRES_HOST,
+                    port: parseInt(process.env.DATABASE_PORT),
+                    username: process.env.USERNAME || process.env.POSTGRES_USER,
+                    password: process.env.PASSWORD || process.env.POSTGRES_PASSWORD,
+                    database: process.env.DATABASE_NAME || process.env.POSTGRES_DATABASE,
                     autoLoadEntities: true,
                     synchronize: true,
                     entities: [Product, Category, Feature]
