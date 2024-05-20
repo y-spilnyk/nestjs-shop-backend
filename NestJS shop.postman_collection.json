@@ -1,0 +1,109 @@
+{
+	"info": {
+		"_postman_id": "7af40e4a-7979-46f5-8000-69dc8055c75e",
+		"name": "NestJS shop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "13579474"
+	},
+	"item": [
+		{
+			"name": "/proudcts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3000/products"
+			},
+			"response": []
+		},
+		{
+			"name": "products",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"test\",\n    \"description\": \"test description\",\n    \"brand\": \"LG\",\n    \"capacity\": 2000,\n    \"price\": 2700,\n    \"categoryId\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/products"
+			},
+			"response": []
+		},
+		{
+			"name": "/products/{productId}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3000/products/de90416b-b218-4e56-9271-37286814c7cd"
+			},
+			"response": []
+		},
+		{
+			"name": "/categories",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3000/categories"
+			},
+			"response": []
+		},
+		{
+			"name": "/categories",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Phones\",\n    \"description\": \"Phones description\",\n    \"handle\": \"phones\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/categories"
+			},
+			"response": []
+		},
+		{
+			"name": "/categories/{categoryId}/products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3000/categories"
+			},
+			"response": []
+		},
+		{
+			"name": "/features",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3000/features"
+			},
+			"response": []
+		},
+		{
+			"name": "/features",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": "http://localhost:3000/features"
+			},
+			"response": []
+		},
+		{
+			"name": "/features/{featureId}/values",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3000/features/1/values"
+			},
+			"response": []
+		}
+	]
+}
